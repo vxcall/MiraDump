@@ -10,14 +10,14 @@ DWORD Process::GetProcId(const char* procName)
     if (hSnap != INVALID_HANDLE_VALUE) {
         PROCESSENTRY32 procEntry;
         procEntry.dwSize = sizeof(procEntry);
-        if (Process32First(hSnap, &procEntry) == 1) { //hsnapの内容をprocEntryにコピー。成功したら1を返す
+        if (Process32First(hSnap, &procEntry) == 1) {
             do {
-                if (strcmp(procEntry.szExeFile, procName) == 0) { //成功なら0。違ったら0以外を返す
+                if (strcmp(procEntry.szExeFile, procName) == 0) {
 
                     procId = procEntry.th32ProcessID;
                     break;
                 }
-            } while (Process32Next(hSnap, &procEntry) == 1); //次があれば1
+            } while (Process32Next(hSnap, &procEntry) == 1);
         }
     }
     CloseHandle(hSnap);
