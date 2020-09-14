@@ -3,13 +3,14 @@
 
 class SignatureInfo {
 private:
-    static std::vector<int> SigParserXX(std::string& sig);
-    static std::vector<int> SigParserQuestion(std::string& sig);
+    std::vector<int> SigParserXX();
+    std::vector<int> SigParserQuestion();
 public:
     std::string name;
+    std::string signatureString;
     std::vector<int> signature;
     std::string module;
     const int offset;
     const int extra;
-    SignatureInfo(std::string& name, std::string signature, std::string& module, const int& offset, const int& extra);
+    SignatureInfo(std::string& name, std::string& signatureString, std::string& module, const int& offset, const int& extra);
 };
