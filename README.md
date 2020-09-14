@@ -1,6 +1,6 @@
-# GameOffsetDumper
+# :mag: GameOffsetDumper
 
-This project isn't completed yet. The description below is based on my future anticipation:)
+## This project isn't completed yet. The description below is based on my future anticipation:)
 
 GameOffsetDumper finds offsets of various games by pattern scanning the entire module according to the signature you pass.
 Basically this would help game hackers and sadly if you guys not know how to reverse games and stuff, this is gonna be a trash for you.
