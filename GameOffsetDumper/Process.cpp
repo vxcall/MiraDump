@@ -1,7 +1,8 @@
 #include "Process.h"
 #include <Windows.h>
 #include <TlHelp32.h>
-#include <iostream>
+#include <optional>
+#include <string>
 
 DWORD Process::GetProcId(const char* procName)
 {
@@ -24,27 +25,25 @@ DWORD Process::GetProcId(const char* procName)
     return procId;
 }
 
-uintptr_t Process::GetModuleBaseAddress(DWORD processID, const char* moduleName)
+std::optional<MODULEENTRY32> Process::GetModuleInfo(DWORD processID, const std::string& moduleName)
 {
-    uintptr_t modBaseAddr = 0;
-    HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processID);
-    if (hSnap != INVALID_HANDLE_VALUE) {
-        MODULEENTRY32 modEntry;
-        modEntry.dwSize = sizeof(modEntry);
-        if (Module32First(hSnap, &modEntry)) {
-            do {
-                if (!strcmp(modEntry.szModule, moduleName)) {
-                    modBaseAddr = (uintptr_t)modEntry.modBaseAddr;
-                    break;
-                }
-            } while (Module32Next(hSnap, &modEntry));
+    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processID);
+    if (hSnapshot == INVALID_HANDLE_VALUE) {
+        return std::optional<MODULEENTRY32>{};
+    }
+    MODULEENTRY32 moduleEntry;
+    moduleEntry.dwSize = sizeof(MODULEENTRY32);
+    if (Module32First(hSnapshot, &moduleEntry)) {
+        while (true) {
+            BOOL ok = Module32Next(hSnapshot, &moduleEntry);
+            if (ok == ERROR_NO_MORE_FILES)
+                break;
+            if (moduleEntry.szModule == moduleName) {
+                CloseHandle(hSnapshot);
+                return std::optional<MODULEENTRY32>(moduleEntry);
+            }
         }
     }
-    CloseHandle(hSnap);
-    return modBaseAddr;
-}
-
-HANDLE Process::GetProcessHandle(DWORD processID) {
-    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, NULL, processID);
-    return hProcess;
+    CloseHandle(hSnapshot);
+    return std::optional<MODULEENTRY32>{};
 }

@@ -1,13 +1,16 @@
 #include <iostream>
 #include "ConfigReader.h"
+#include "Process.h"
+#include <optional>
+
+#define PROCESS_NAME "csgo.exe"
 
 int main() {
     std::vector<SignatureInfo> configs = ConfigReader::Read(std::string("test.toml"));
     for (SignatureInfo& config : configs) {
-        for (auto& sig : config.signature) {
-            std::cout << std::hex << sig << " ";
+        std::optional<MODULEENTRY32> modInfo = Process::GetModuleInfo(Process::GetProcId(PROCESS_NAME), config.module);
+        if (modInfo) {
+            std::cout << modInfo->modBaseSize << std::endl;
         }
-        std::cout << std::endl;
     }
-
 }

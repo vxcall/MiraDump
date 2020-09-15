@@ -1,9 +1,12 @@
 #pragma once
 #include <Windows.h>
 #include <TlHelp32.h>
+#include <optional>
+#include <string>
 
-namespace Process {
+class Process {
+public:
     HANDLE GetProcessHandle(DWORD processID);
-    uintptr_t GetModuleBaseAddress(DWORD processID, const char* modName);
-    DWORD GetProcId(const char* procName);
-}
+    static DWORD GetProcId(const char* procName);
+    static std::optional<MODULEENTRY32> GetModuleInfo(DWORD processID, const std::string& moduleName);
+};
