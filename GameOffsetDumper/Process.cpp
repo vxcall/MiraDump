@@ -36,7 +36,7 @@ std::optional<MODULEENTRY32> Process::GetModuleInfo(DWORD processID, const std::
     if (Module32First(hSnapshot, &moduleEntry)) {
         while (true) {
             BOOL ok = Module32Next(hSnapshot, &moduleEntry);
-            if (ok == ERROR_NO_MORE_FILES)
+            if (ok == FALSE)
                 break;
             if (moduleEntry.szModule == moduleName) {
                 CloseHandle(hSnapshot);
