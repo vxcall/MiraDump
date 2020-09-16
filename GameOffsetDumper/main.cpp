@@ -1,16 +1,21 @@
 #include <iostream>
 #include "ConfigReader.h"
 #include "Process.h"
-#include <optional>
 
 #define PROCESS_NAME "csgo.exe"
 
 int main() {
     std::vector<SignatureInfo> configs = ConfigReader::Read(std::string("test.toml"));
     for (SignatureInfo& config : configs) {
-        std::optional<MODULEENTRY32> modInfo = Process::GetModuleInfo(Process::GetProcId(PROCESS_NAME), config.module);
-        if (modInfo) {
-            std::cout << modInfo->modBaseSize << std::endl;
+        std::optional<DWORD> processID = Process::GetProcID(PROCESS_NAME);
+        if (!processID) {
+            std::cerr << "No such process \"" << PROCESS_NAME << "\"" << std::endl;
+            return 0;
+        }
+        auto result = Process::GetModuleInfo(*processID, config.module);
+        if (result) {
+            std::cout << (uintptr_t)result->first << std::endl;
+            std::cout << result->second << std::endl;
         } else {
             std::cerr << "No such module \"" << config.module << "\" in this game." << std::endl;
         }

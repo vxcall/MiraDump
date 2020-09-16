@@ -4,9 +4,9 @@
 #include <optional>
 #include <string>
 
-DWORD Process::GetProcId(const char* procName)
+std::optional<DWORD> Process::GetProcID(const char* procName)
 {
-    DWORD procId = 0;
+    std::optional<DWORD> processID {};
     HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (hSnap != INVALID_HANDLE_VALUE) {
         PROCESSENTRY32 procEntry;
@@ -15,24 +15,24 @@ DWORD Process::GetProcId(const char* procName)
             do {
                 if (strcmp(procEntry.szExeFile, procName) == 0) {
 
-                    procId = procEntry.th32ProcessID;
+                    processID = procEntry.th32ProcessID;
                     break;
                 }
             } while (Process32Next(hSnap, &procEntry) == 1);
         }
     }
     CloseHandle(hSnap);
-    return procId;
+    return processID;
 }
 
-std::optional<MODULEENTRY32> Process::GetModuleInfo(DWORD processID, const std::string& moduleName)
+std::optional<std::pair<BYTE*, DWORD>> Process::GetModuleInfo(DWORD processID, const std::string& moduleName)
 {
     HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processID);
     if (hSnapshot == INVALID_HANDLE_VALUE) {
-        return std::optional<MODULEENTRY32>{};
+        return std::optional<std::pair<BYTE*, DWORD>> {};
     }
     MODULEENTRY32 moduleEntry;
-    moduleEntry.dwSize = sizeof(MODULEENTRY32);
+    moduleEntry.dwSize = sizeof(moduleEntry);
     if (Module32First(hSnapshot, &moduleEntry)) {
         while (true) {
             BOOL ok = Module32Next(hSnapshot, &moduleEntry);
@@ -40,10 +40,10 @@ std::optional<MODULEENTRY32> Process::GetModuleInfo(DWORD processID, const std::
                 break;
             if (moduleEntry.szModule == moduleName) {
                 CloseHandle(hSnapshot);
-                return std::optional<MODULEENTRY32>(moduleEntry);
+                return std::make_pair(moduleEntry.modBaseAddr, moduleEntry.modBaseSize);
             }
         }
     }
     CloseHandle(hSnapshot);
-    return std::optional<MODULEENTRY32>{};
+    return std::optional<std::pair<BYTE*, DWORD>> {};
 }
