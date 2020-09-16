@@ -1,35 +1,45 @@
 #include "Process.h"
 #include <Windows.h>
 #include <TlHelp32.h>
-#include <optional>
 #include <string>
 
-std::optional<DWORD> Process::GetProcID(const char* procName)
+Process::Process(const std::string& processName, const std::string& moduleName)
 {
-    std::optional<DWORD> processID {};
+    this->processID = 0;
+    this->moduleBaseAddress = nullptr;
+    this->moduleBaseSize = 0;
+    this->GetProcID(processName);
+    this->GetModuleInfo(moduleName);
+}
+
+Process Process::GetProcess(const std::string &processName, const std::string &moduleName)
+{
+    return Process(processName, moduleName);
+}
+
+void Process::GetProcID(const std::string& processName)
+{
     HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (hSnap != INVALID_HANDLE_VALUE) {
         PROCESSENTRY32 procEntry;
         procEntry.dwSize = sizeof(procEntry);
         if (Process32First(hSnap, &procEntry) == 1) {
             do {
-                if (strcmp(procEntry.szExeFile, procName) == 0) {
-
-                    processID = procEntry.th32ProcessID;
+                if (procEntry.szExeFile == processName) {
+                    this->processID = procEntry.th32ProcessID;
                     break;
                 }
             } while (Process32Next(hSnap, &procEntry) == 1);
         }
     }
     CloseHandle(hSnap);
-    return processID;
 }
 
-std::optional<std::pair<BYTE*, DWORD>> Process::GetModuleInfo(DWORD processID, const std::string& moduleName)
+void Process::GetModuleInfo(const std::string& moduleName)
 {
-    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processID);
+    HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, this->processID);
     if (hSnapshot == INVALID_HANDLE_VALUE) {
-        return std::optional<std::pair<BYTE*, DWORD>> {};
+        return;
     }
     MODULEENTRY32 moduleEntry;
     moduleEntry.dwSize = sizeof(moduleEntry);
@@ -40,10 +50,10 @@ std::optional<std::pair<BYTE*, DWORD>> Process::GetModuleInfo(DWORD processID, c
                 break;
             if (moduleEntry.szModule == moduleName) {
                 CloseHandle(hSnapshot);
-                return std::make_pair(moduleEntry.modBaseAddr, moduleEntry.modBaseSize);
+                this->moduleBaseAddress = moduleEntry.modBaseAddr;
+                this->moduleBaseSize = moduleEntry.modBaseSize;
             }
         }
     }
     CloseHandle(hSnapshot);
-    return std::optional<std::pair<BYTE*, DWORD>> {};
 }

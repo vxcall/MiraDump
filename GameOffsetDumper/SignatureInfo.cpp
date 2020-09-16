@@ -10,7 +10,8 @@ SignatureInfo::SignatureInfo(std::string& name, std::string& signatureString, st
     }
 }
 
-std::vector<int> SignatureInfo::SigParserXX() const {
+std::vector<int> SignatureInfo::SigParserXX() const
+{
     int i = 0;
     int sigSize = this->signatureString.size();
     std::vector<int> result{};
@@ -27,7 +28,8 @@ std::vector<int> SignatureInfo::SigParserXX() const {
     return result;
 }
 
-std::vector<int> SignatureInfo::SigParserQuestion() const {
+std::vector<int> SignatureInfo::SigParserQuestion() const
+{
     int i = 0;
     int sigSize = this->signatureString.size();
     std::vector<int> result{};

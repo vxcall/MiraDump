@@ -1,7 +1,9 @@
 #include "ConfigReader.h"
 #include "toml.hpp"
+#include <optional>
 
-std::vector<SignatureInfo> ConfigReader::Read(const std::string& filename) {
+std::vector<SignatureInfo> ConfigReader::ReadSigs(const std::string& filename)
+{
     auto config = toml::parse(filename);
     std::vector<SignatureInfo> result = {};
     for (auto& target : config.at("targets").as_array()) {
@@ -9,4 +11,15 @@ std::vector<SignatureInfo> ConfigReader::Read(const std::string& filename) {
         result.push_back(si);
     }
     return result;
+}
+
+std::optional<std::string> ConfigReader::ReadGameName(const std::string &filename)
+{
+    auto config = toml::parse(filename);
+    auto result = toml::find_or(config, "game", "");
+    if (!result.empty()) {
+        return result;
+    } else {
+        return std::optional<std::string> {};
+    }
 }
