@@ -5,6 +5,8 @@
 #include <string>
 
 class Process {
+    std::string processName;
+    std::string moduleName;
     DWORD processID;
     BYTE* moduleBaseAddress;
     DWORD moduleBaseSize;
@@ -13,5 +15,5 @@ class Process {
     void GetModuleInfo(const std::string& moduleName);
 public:
     static Process GetProcess(const std::string& processName, const std::string& moduleName);
-
+    std::optional<std::string> Process::GetError();
 };

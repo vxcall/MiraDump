@@ -14,5 +14,6 @@ int main()
     for (SignatureInfo& config : configs)
     {
         Process p = Process::GetProcess(*gameName, config.module);
+        std::cerr << *p.GetError() << std::endl;
     }
 }
