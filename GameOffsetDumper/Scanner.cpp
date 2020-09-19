@@ -1,8 +1,9 @@
 #include "Scanner.h"
 #include <vector>
 #include <iostream>
+#include <optional>
 
-void Scanner::FindPattern(std::vector<int>& signature, Process& process)
+std::optional<uintptr_t> Scanner::FindPattern(std::vector<int>& signature, Process& process)
 {
     std::vector<std::byte> buffer(process.moduleBaseSize);
     ReadProcessMemory(process.hProcess, static_cast<LPCVOID>(process.moduleBaseAddress), buffer.data(), buffer.size(), NULL);
@@ -12,10 +13,9 @@ void Scanner::FindPattern(std::vector<int>& signature, Process& process)
             iStore = i;
             if (signature.at(j) == -1 || static_cast<std::byte>(signature.at(j)) == buffer.at(i)) {
                 if (j + 1 == signature.size()) {
-                    std::cout << "FOUND" << std::endl;
-                    return;
+                    int position = i - static_cast<int>(signature.size()) + 2;
+                    return position;
                 }
-                //std::cout << signature.at(j) << " " << static_cast<int>(buffer.at(i)) << std::endl;
                 i++;
             } else {
                 i = iStore;
@@ -23,4 +23,14 @@ void Scanner::FindPattern(std::vector<int>& signature, Process& process)
             }
         }
     }
+    return std::optional<uintptr_t>{};
+}
+
+std::optional<uintptr_t> Scanner::Scan(std::vector<int> &signature, Process &process) {
+    std::optional<uintptr_t> result = Scanner::FindPattern(signature, process);
+    if (!result)
+        return std::optional<uintptr_t> {};
+    uintptr_t buffer;
+    ReadProcessMemory(process.hProcess, static_cast<LPCVOID>(process.moduleBaseAddress + *result), &buffer, sizeof(buffer), NULL);
+    return buffer - (uintptr_t)process.moduleBaseAddress;
 }

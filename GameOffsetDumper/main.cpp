@@ -17,7 +17,11 @@ int main()
     {
         Process prc = Process::GetProcess(*gameName, config.module);
         std::cerr << *prc.GetError();
-        Scanner::FindPattern(config.signature, prc);
+        auto result = Scanner::Scan(config.signature, prc);
+        if (!result) {
+            std::cerr << "Couldn't find signature. Check if you filled config.toml properly" << std::endl;
+            return 1;
+        }
+        std::cout << config.module << " + 0x" << std::hex << *result << std::endl;
     }
-
 }

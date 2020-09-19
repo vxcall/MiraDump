@@ -1,0 +1,15 @@
+game = "csgo.exe"
+
+[[targets]]
+name = "dwEntityList"
+signature = "BBxxxxxxxx83xxxx0F8Cxxxxxxxx3Bxx"
+module = "client.dll"
+offset = 1
+extra = 0
+
+[[targets]]
+name = "dwLocalPlayer"
+signature = "A1????A8?75?0F57?"
+module = "engine.dll"
+offset = 3
+extra = 4
