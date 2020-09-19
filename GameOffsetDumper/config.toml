@@ -7,9 +7,16 @@ module = "client.dll"
 offset = 1
 extra = 0
 
+#[[targets]]
+#name = "dwLocalPlayer"
+#signature = "A1????A8?75?0F57?"
+#module = "engine.dll"
+#offset = 3
+#extra = 4
+
 [[targets]]
-name = "dwLocalPlayer"
-signature = "A1????A8?75?0F57?"
-module = "engine.dll"
-offset = 3
-extra = 4
+name = "dwForceAttack"
+signature = "890D????8B0D????8BF28BC183CE04"
+module = "client.dll"
+offset = 2
+extra = 0
