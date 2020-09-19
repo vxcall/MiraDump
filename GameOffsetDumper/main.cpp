@@ -1,7 +1,8 @@
 #include <iostream>
+#include <optional>
 #include "ConfigReader.h"
 #include "Process.h"
-#include <optional>
+#include "Scanner.h"
 
 int main()
 {
@@ -10,10 +11,13 @@ int main()
         std::cerr << "Specify the name of the target game" << std::endl;
         return 1;
     }
+    
     std::vector<SignatureInfo> configs = ConfigReader::ReadSigs("config.toml");
     for (SignatureInfo& config : configs)
     {
-        Process p = Process::GetProcess(*gameName, config.module);
-        std::cerr << *p.GetError() << std::endl;
+        Process prc = Process::GetProcess(*gameName, config.module);
+        std::cerr << *prc.GetError();
+        Scanner::FindPattern(config.signature, prc);
     }
+
 }
