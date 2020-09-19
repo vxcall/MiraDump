@@ -32,5 +32,5 @@ std::optional<uintptr_t> Scanner::Scan(std::vector<int> &signature, Process &pro
     //std::cout << std::hex << *result + sigInfo.offset << std::endl;
     uintptr_t buffer;
     ReadProcessMemory(process.hProcess, static_cast<LPCVOID>(process.moduleBaseAddress + *result + sigInfo.offset), &buffer, sizeof(buffer), NULL);
-    return buffer - (uintptr_t)process.moduleBaseAddress;
+    return buffer - (uintptr_t)process.moduleBaseAddress + sigInfo.extra;
 }

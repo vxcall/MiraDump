@@ -22,6 +22,6 @@ int main()
             std::cerr << "Couldn't find signature. Check if you filled config.toml properly" << std::endl;
             return 1;
         }
-        std::cout << config.module << " + 0x" << std::hex << *result << std::endl;
+        std::cout << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
     }
 }
