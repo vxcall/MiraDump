@@ -1,3 +1,4 @@
+#pragma once
 #include "SignatureInfo.h"
 #include <vector>
 #include <string>
