@@ -1,21 +1,20 @@
 # :mag: GameOffsetDumper
 
-#### This project isn't completed yet. The description below is based on my future anticipation:)
-
-Leave a **:star: star :star:** if you find this helpful :) **And I extremely appreciate guys who already stared this project even tho It's not been completed yet.**
+Leave a **:star:star** if you find this helpful :)
 
 **GameOffsetDumper** finds offsets of various games by pattern scanning the entire module according to the signature you pass.
 
-Basically this would help game hackers and sadly if you guys not know how to reverse games and stuff, this is gonna be a trash for you.
+Basically this would help game hackers and sadly if you guys don't know how to reverse games and stuff, this is gonna be a trash for you.
+
+# Progress
+The project is almost completed. I'm going to brush up a bit and make sure if this works on various games, and I'll make a new release. It will take a few days.
 
 # Get started
 
-This tool's considered to be used in conjunction with [**aamaker**](https://bitbucket.org/zokkes/aamaker-ce/downloads/) which is a signature creating plugin for Cheat Engine.
+Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
+
+Then run this software and every offset will be searched through whole module and written to GameOffset.hpp.
 
 HERE WILL BE UPDATED LATER ON
 
-# Other info
-This software offers what [hazedumper](https://github.com/frk1/hazedumper-rs) gives you.
-However I just wanted to implement it on my own to comprehend what's going on in it.
-
-Additionally, regarding differentiation, this software adopted toml instead of json, so using this is more intuitive than hazedumper I hope.
+Regarding the differentiation from hazedumper, this software adopted toml instead of json, so using this is more intuitive than hazedumper I hope.
