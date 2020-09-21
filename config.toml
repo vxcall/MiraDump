@@ -1,22 +1,15 @@
-game = "csgo.exe"
+game = "left4dead2.exe"
 
 [[targets]]
-name = "dwEntityList"
-signature = "BBxxxxxxxx83xxxx0F8Cxxxxxxxx3Bxx"
+name = "dwLocalPlayer"
+signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"
 module = "client.dll"
-offset = 1
+offset = 3
 extra = 0
 
-#[[targets]]
-#name = "dwLocalPlayer"
-#signature = "A1????A8?75?0F57?"
-#module = "engine.dll"
-#offset = 3
-#extra = 4
-
 [[targets]]
-name = "dwForceAttack"
-signature = "890D????8B0D????8BF28BC183CE04"
-module = "client.dll"
-offset = 2
+name = "BaseOfHandgun"
+signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
+module = "server.dll"
+offset = 1
 extra = 0
