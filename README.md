@@ -1,6 +1,6 @@
 # :mag: GameOffsetDumper
 
-![header](https://user-images.githubusercontent.com/33578715/93802038-828eef00-fc75-11ea-97c5-b2c65d4c6eb9.PNG)
+![header](https://user-images.githubusercontent.com/33578715/93803078-e8c84180-fc76-11ea-8fd4-dce048825479.PNG)
 
 Leave a **:star:star** if you find this helpful :)
 
