@@ -1,5 +1,7 @@
 # :mag: GameOffsetDumper
 
+![header](https://user-images.githubusercontent.com/33578715/93802038-828eef00-fc75-11ea-97c5-b2c65d4c6eb9.PNG)
+
 Leave a **:star:star** if you find this helpful :)
 
 **GameOffsetDumper** finds offsets of various games by pattern scanning the entire module according to the signature you pass.
