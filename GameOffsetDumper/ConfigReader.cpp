@@ -15,6 +15,10 @@ std::vector<SignatureInfo> ConfigReader::ReadSigs(const std::string& filename)
 
 std::optional<std::string> ConfigReader::ReadGameName(const std::string &filename)
 {
+    std::ifstream ifs(filename);
+    if (!ifs.is_open()) {
+        return std::optional<std::string> {};
+    }
     auto config = toml::parse(filename);
     auto result = toml::find_or(config, "game", "");
     if (!result.empty()) {

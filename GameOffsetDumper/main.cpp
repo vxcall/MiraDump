@@ -10,7 +10,7 @@ int main()
 {
     std::optional<std::string> gameName = ConfigReader::ReadGameName("config.toml");
     if (!gameName) {
-        std::cerr << "Specify the name of the target game" << std::endl;
+        std::cerr << "Something went wrong. Make sure if you have config.toml and specified the name of a game" << std::endl;
         return 1;
     }
     
