@@ -46,6 +46,6 @@ We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/GameOffs
 Then run GameOffsetDumper.exe and every offset will be searched through whole module and written to GameOffset.hpp which will create at the same directory.
 
 
-# Background
+# :notes: Background
 
 The purpose of this project for me is reinventing the wheel and to use for my personal hacking activity in the future.
