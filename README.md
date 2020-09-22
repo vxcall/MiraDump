@@ -14,6 +14,8 @@ Basically this would help game hackers yet sadly if you guys don't know how to r
 
 Go to [**Release**](https://github.com/s3pt3mb3r/GameOffsetDumper/releases) and download latest version of GameOffsetDumper.
 
+If you hate to download binary from someone else, then build from source by yourself. It'll work as well
+
 Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
 
 This is the format of config.toml.
