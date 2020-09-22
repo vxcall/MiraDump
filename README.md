@@ -16,7 +16,30 @@ Go to [**Release**](https://github.com/s3pt3mb3r/GameOffsetDumper/releases) and 
 
 Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
 
-We have [**a sample of config.toml**](https://github.com/s3pt3mb3r/GameOffsetDumper/blob/master/config.toml) so, follow this format:ok_hand:.
+This is the format of config.toml.
+(We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/GameOffsetDumper/blob/master/config.toml) :ok_hand:.)
+
+```toml
+game = "left4dead2.exe"  #specify the name of the target game
+
+[[targets]]
+name = "dwLocalPlayer"   #You can name whatever you want.
+signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"  #The signature you've got
+module = "client.dll"   #name of the module that the address belongs to
+offset = 3  #Read up below
+extra = 0
+
+[[targets]]
+name = "BaseOfHandgun"
+signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
+module = "server.dll"
+offset = 1
+extra = 0
+
+#so on and so forth
+```
+
+We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/GameOffsetDumper/blob/master/config.toml) :ok_hand:.
 
 **I'm currently working on making a complete guide of this tool for those who don't understand what signature, offset and extra is. Wait for it.** Alternatively, you can find them [Here](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/) as well.
 
