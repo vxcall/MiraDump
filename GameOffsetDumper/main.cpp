@@ -19,7 +19,10 @@ int main()
     for (SignatureInfo& config : configs)
     {
         Process prc = Process::GetProcess(*gameName, config.module);
-        std::cerr << *prc.GetError();
+        if (auto e = prc.GetError(); e) {
+            std::cerr << *e;
+            return 1;
+        }
         auto result = Scanner::Scan(config.signature, prc, config);
         if (!result) {
             std::cerr << "Couldn't find signature. Check if you filled config.toml properly." << std::endl;
