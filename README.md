@@ -6,7 +6,7 @@ Leave a **:star:star** if you find this helpful :)
 
 **GameOffsetDumper** is a tool that finds offsets of various games by pattern scanning the entire module according to the signature you specify. This is a substitute for hazedumper not gonna lie, but this tool adopted toml file instead of json for config file.
 
-Basically this would help game hackers yet sadly if you guys don't know how to reverse games and stuff, this is gonna be a trash for you. However, I'll be always ok to answer whatever you will ask, so create issue if you're wondering something.
+Basically this would help game hackers yet sadly if you guys don't know how to reverse games and stuff, this is gonna be a trash for you. However, I'll be always ok to answer whatever you would ask, so create issue if you're wondering something.
 
 :warning:Do not use this to the game running with a modern anti-cheat. Or launch option `-insecure` will help you when you try this tool on the game under VAC protection.
 
