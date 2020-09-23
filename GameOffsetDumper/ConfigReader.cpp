@@ -16,6 +16,9 @@ std::vector<SignatureInfo> ConfigReader::ReadSigs(const std::string& filename)
 std::string ConfigReader::ReadExportDir(const std::string &filename) {
     auto config = toml::parse(filename);
     static auto dir = toml::find_or(config, "export_dir", "");
+    if (dir.c_str()[dir.size()-1] != '/' && dir.c_str()[dir.size()-1] != '\\') {
+        dir += "/";
+    }
     return dir;
 }
 
