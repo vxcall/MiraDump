@@ -23,7 +23,7 @@ This is the format of config.toml.
 
 ```toml
 game = "left4dead2.exe"  #specify the name of the target game
-export_dir = "D:/Dev/Cpp/" #You can even specify export directory. make sure to include "/"
+export_dir = "D:/Dev/Cpp/" #You can even specify export directory.
 
 [[targets]]
 name = "dwLocalPlayer"   #You can name whatever you want.
