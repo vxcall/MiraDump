@@ -16,6 +16,6 @@ public:
     HANDLE hProcess;
     BYTE* moduleBaseAddress;
     DWORD moduleBaseSize;
-    static Process GetProcess(const std::string& processName, const std::string& moduleName);
+    static Process GetProcess(std::string& processName, const std::string& moduleName);
     std::optional<std::string> GetError();
 };

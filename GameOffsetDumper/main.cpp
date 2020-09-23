@@ -1,6 +1,7 @@
 #include <iostream>
 #include <optional>
 #include <tuple>
+#include <string>
 #include "ConfigReader.h"
 #include "Process.h"
 #include "Scanner.h"
@@ -8,13 +9,15 @@
 
 int main()
 {
-    std::optional<std::string> gameName = ConfigReader::ReadGameName("config.toml");
+    std::string configFileName = "config.toml";
+    std::optional<std::string> gameName = ConfigReader::ReadGameName(configFileName);
     if (!gameName) {
         std::cerr << "Something went wrong. Make sure if you have config.toml and specified the name of a game" << std::endl;
         return 1;
     }
+    std::string dir = ConfigReader::ReadExportDir(configFileName);
     
-    std::vector<SignatureInfo> configs = ConfigReader::ReadSigs("config.toml");
+    std::vector<SignatureInfo> configs = ConfigReader::ReadSigs(configFileName);
     std::vector<std::tuple<std::string, uintptr_t, std::string>> offsetInfo {};
     for (SignatureInfo& config : configs)
     {
@@ -31,6 +34,8 @@ int main()
         //std::cout << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
         offsetInfo.emplace_back(std::make_tuple(config.name, *result, config.module));
     }
-    Exporter exp("GameOffsets.hpp", offsetInfo);
+
+    std::string exptDir = dir + "GameOffsets.hpp";
+    Exporter exp(exptDir, offsetInfo);
     exp.WriteDown();
 }

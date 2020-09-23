@@ -20,8 +20,7 @@ Process::Process(std::string& processName, const std::string& moduleName)
     }
 }
 
-
-Process Process::GetProcess(const std::string &processName, const std::string &moduleName)
+Process Process::GetProcess(std::string &processName, const std::string &moduleName)
 {
     return Process(processName, moduleName);
 }

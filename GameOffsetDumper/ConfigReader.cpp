@@ -13,6 +13,12 @@ std::vector<SignatureInfo> ConfigReader::ReadSigs(const std::string& filename)
     return result;
 }
 
+std::string ConfigReader::ReadExportDir(const std::string &filename) {
+    auto config = toml::parse(filename);
+    static auto dir = toml::find_or(config, "export_dir", "");
+    return dir;
+}
+
 std::optional<std::string> ConfigReader::ReadGameName(const std::string &filename)
 {
     std::ifstream ifs(filename);

@@ -1,7 +1,7 @@
 #include "Exporter.h"
 #include <fstream>
 
-Exporter::Exporter(const char* filename, std::vector<std::tuple<std::string, uintptr_t, std::string>>& offsetInfo)
+Exporter::Exporter(std::string& filename, std::vector<std::tuple<std::string, uintptr_t, std::string>>& offsetInfo)
 :filename(filename), offsetInfo(offsetInfo)
 {}
 
