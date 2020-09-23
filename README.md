@@ -4,7 +4,7 @@
 
 Leave a **:star:star** if you find this helpful :)
 
-**GameOffsetDumper** is a tool that finds offsets of various games by pattern scanning the entire module according to the signature you specify. This is a substitute for hazedumper not gonna lie, but this tool adopted toml file instead of json for config file.
+**GameOffsetDumper** is a tool that finds offsets of various games by pattern scanning the entire module according to the signature you specify. This is a substitute for hazedumper not gonna lie, but this tool adopted toml file instead of json for config file. And since you can specify the export directory, you can directory update your offset header which I think is really useful.
 
 Basically this would help game hackers yet sadly if you guys don't know how to reverse games and stuff, this is gonna be a trash for you. However, I'll be always ok to answer whatever you would ask, so create issue if you're wondering something.
 
@@ -23,6 +23,7 @@ This is the format of config.toml.
 
 ```toml
 game = "left4dead2.exe"  #specify the name of the target game
+export_dir = "D:/Dev/Cpp/" #You can even specify export directory. make sure to include "/"
 
 [[targets]]
 name = "dwLocalPlayer"   #You can name whatever you want.
