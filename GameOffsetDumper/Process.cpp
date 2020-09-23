@@ -35,7 +35,11 @@ std::optional<std::string> Process::GetError()
     } else if (!hProcess) {
         error << "Failed to get process handle" << std::endl;
     }
-    return error.str();
+    if (error.str().empty()) {
+        return std::optional<std::string> {};
+    } else {
+        return error.str();
+    }
 }
 
 void Process::GetProcID()

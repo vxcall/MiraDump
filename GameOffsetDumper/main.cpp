@@ -22,7 +22,7 @@ int main()
     for (SignatureInfo& config : configs)
     {
         Process prc = Process::GetProcess(*gameName, config.module);
-        if (auto e = prc.GetError(); !e) {
+        if (auto e = prc.GetError(); e) {
             std::cerr << *e;
             return 1;
         }
