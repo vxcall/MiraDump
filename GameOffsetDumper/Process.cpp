@@ -5,14 +5,14 @@
 #include <sstream>
 #include <iostream>
 
-Process::Process(const std::string& processName, const std::string& moduleName)
+Process::Process(std::string& processName, const std::string& moduleName)
 : processName(processName), moduleName(moduleName)
 {
     this->processID = 0;
     this->hProcess = nullptr;
     this->moduleBaseAddress = nullptr;
     this->moduleBaseSize = 0;
-    this->GetProcID(processName);
+    this->GetProcID();
     if (processID != 0)
     {
         this->GetProcessHandle(processID);
@@ -39,7 +39,7 @@ std::optional<std::string> Process::GetError()
     return error.str();
 }
 
-void Process::GetProcID(const std::string& processName)
+void Process::GetProcID()
 {
     HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (hSnap != INVALID_HANDLE_VALUE) {
@@ -47,7 +47,7 @@ void Process::GetProcID(const std::string& processName)
         procEntry.dwSize = sizeof(procEntry);
         if (Process32First(hSnap, &procEntry) == 1) {
             do {
-                if (procEntry.szExeFile == processName) {
+                if (procEntry.szExeFile == this->processName) {
                     this->processID = procEntry.th32ProcessID;
                     break;
                 }

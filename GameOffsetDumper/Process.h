@@ -8,8 +8,8 @@ class Process {
     std::string processName;
     DWORD processID;
     std::string moduleName;
-    Process(const std::string& processName, const std::string& moduleName);
-    void GetProcID(const std::string& processName);
+    Process(std::string& processName, const std::string& moduleName);
+    void GetProcID();
     void GetModuleInfo(const std::string& moduleName);
     void GetProcessHandle(DWORD& processID);
 public:
