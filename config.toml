@@ -1,4 +1,5 @@
 game = "left4dead2.exe"
+export_dir = "D:/Dev"
 
 [[targets]]
 name = "dwLocalPlayer"
