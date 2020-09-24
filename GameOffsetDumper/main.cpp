@@ -41,14 +41,14 @@ int main()
             return 1;
         } else if (e->find("module") != std::string::npos) {
             std::cout << *e;
-            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Wrong module name: " + config.module));
+            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid module name: " + config.module));
             continue;
         }
 
         auto result = Scanner::Scan(config.signature, prc, config);
         if (!result) {
             std::cerr << "Couldn't find signature: " << config.name << std::endl;
-            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Wrong signature: " + config.signatureString));
+            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid signature: " + config.signatureString));
             continue;
         }
         std::cout << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
