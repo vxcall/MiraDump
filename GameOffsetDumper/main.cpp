@@ -29,7 +29,6 @@ int main()
         Terminate();
         return 1;
     }
-    std::string dir = ConfigReader::ReadExportDir(configFileName);
     
     std::vector<SignatureInfo> configs = ConfigReader::ReadSigs(configFileName);
     std::vector<std::tuple<std::string, uintptr_t, std::string>> offsetInfo {};
@@ -49,6 +48,14 @@ int main()
         }
         std::cout << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
         offsetInfo.emplace_back(std::make_tuple(config.name, *result, config.module));
+    }
+
+    std::string dir = ConfigReader::ReadExportDir(configFileName);
+    if (!dir.empty()) {
+        std::cout << "\nGameOffsetDumper.hpp will be created at: " << dir << std::endl;
+    } else {
+        std::cout << "GameOffsets.hpp will be created at current directory." << std::endl;
+        std::cout << "(You probably didn't specify existing directory.)" << std::endl;
     }
 
     std::string exptDir = dir + "GameOffsets.hpp";
