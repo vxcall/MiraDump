@@ -25,14 +25,14 @@ This is the format of config.toml.
 game = "left4dead2.exe"  #specify the name of the target game
 export_dir = "D:/Dev/Cpp/" #You can even specify export directory.
 
-[[targets]]
+[[profile]]
 name = "dwLocalPlayer"   #You can name whatever you want.
 signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"  #The signature you've got
 module = "client.dll"   #name of the module that the address belongs to
 offset = 3  #Read up below
 extra = 0
 
-[[targets]]
+[[profile]]
 name = "BaseOfHandgun"
 signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
 module = "server.dll"
@@ -42,12 +42,13 @@ extra = 0
 #so on and so forth
 ```
 
-We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/GameOffsetDumper/blob/master/config.toml) :ok_hand:.
+Then run `GameOffsetDumper.exe` and every offset will be searched through whole module and written to GameOffset.hpp which will create at the same directory.
+
+## Result would look like this
+If you specify something invalid in config.toml, the address will be 0x0 and corresponding comment will be appear.
+![result](https://user-images.githubusercontent.com/33578715/94135985-d3316280-fe96-11ea-92ac-0520c3cbebb9.png)
 
 **I'm currently working on making a complete guide of this tool for those who don't understand what signature, offset and extra is. Wait for it.** Alternatively, you can find them [Here](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/) as well.
-
-Then run GameOffsetDumper.exe and every offset will be searched through whole module and written to GameOffset.hpp which will create at the same directory.
-
 
 # :notes: Background
 
