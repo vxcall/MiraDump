@@ -35,11 +35,16 @@ int main()
     for (SignatureInfo& config : configs)
     {
         Process prc = Process::GetProcess(*gameName, config.module);
-        if (auto e = prc.GetError(); e) {
+        if (auto e = prc.GetError(); e && e->find("module") == std::string::npos) {
             std::cerr << *e;
             Terminate();
             return 1;
+        } else if (e->find("module") != std::string::npos) {
+            std::cout << *e;
+            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Wrong module name: " + config.module));
+            continue;
         }
+
         auto result = Scanner::Scan(config.signature, prc, config);
         if (!result) {
             std::cerr << "Couldn't find signature. Check if you filled config.toml properly." << std::endl;
