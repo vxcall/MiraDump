@@ -47,9 +47,9 @@ int main()
 
         auto result = Scanner::Scan(config.signature, prc, config);
         if (!result) {
-            std::cerr << "Couldn't find signature. Check if you filled config.toml properly." << std::endl;
-            Terminate();
-            return 1;
+            std::cerr << "Couldn't find signature: " << config.name << std::endl;
+            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Wrong signature: " + config.signatureString));
+            continue;
         }
         std::cout << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
         offsetInfo.emplace_back(std::make_tuple(config.name, *result, config.module));

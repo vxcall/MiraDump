@@ -20,8 +20,10 @@ std::vector<int> SignatureInfo::SigParserXX() const
         std::string byte = this->signatureString.substr(i, 2);
         if (byte == "xx") {
             result.push_back(-1);
-        } else {
+        } else if ( byte.size() == 2) {
             result.push_back(std::stoi(byte, 0, 16));
+        } else {
+            return std::vector<int>{};
         }
         i += 2;
     }
