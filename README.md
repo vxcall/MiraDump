@@ -12,9 +12,14 @@ Basically this would help game hackers yet sadly if you guys don't know how to r
 
 # :fire: Get started
 
-Go to [**Release**](https://github.com/s3pt3mb3r/GameOffsetDumper/releases) and download latest version of GameOffsetDumper.
+Run following commands so that `GameOffsetDumper.sln` file for Visual Studio will be generated in `build` directory;)
 
-If you hate to download binary from someone else, then build from source by yourself. It'll work as well
+```
+$ git clone https://github.com/s3pt3mb3r/GameOffsetDumper.git
+$ cd GameOffsetDumper
+$ mkdir build && cd build
+$ cmake ..
+```
 
 Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
 
