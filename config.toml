@@ -1,14 +1,14 @@
 game = "left4dead2.exe"
 export_dir = "D:/Dev"
 
-[[targets]]
+[[profile]]
 name = "dwLocalPlayer"
 signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"
 module = "client.dll"
 offset = 3
 extra = 0
 
-[[targets]]
+[[profile]]
 name = "BaseOfHandgun"
 signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
 module = "server.dll"
