@@ -28,6 +28,7 @@ Process Process::GetProcess(std::string &processName, const std::string &moduleN
 std::optional<std::string> Process::GetError()
 {
     std::ostringstream error;
+
     if (!processID) {
         error << "No such process is running: \"" << this->processName << "\"" << std::endl;
     } else if (!moduleBaseSize) {
@@ -69,6 +70,10 @@ void Process::GetModuleInfo(const std::string& moduleName)
     MODULEENTRY32 moduleEntry;
     moduleEntry.dwSize = sizeof(moduleEntry);
     if (Module32First(hSnapshot, &moduleEntry)) {
+        if (moduleEntry.szModule == moduleName) {
+            this->moduleBaseAddress = moduleEntry.modBaseAddr;
+            this->moduleBaseSize = moduleEntry.modBaseSize;
+        }
         while (true) {
             BOOL ok = Module32Next(hSnapshot, &moduleEntry);
             if (ok == FALSE)

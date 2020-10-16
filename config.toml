@@ -1,5 +1,5 @@
 game = "left4dead2.exe"
-export_dir = "D:/Dev"
+export_dir = "C:/Users/PC/Desktop"
 
 [[profile]]
 name = "dwLocalPlayer"
