@@ -1,25 +1,14 @@
 #include "SignatureInfo.h"
 
-std::string Trim(const char* signatureString) {
-    char *newString = new char[strlen(signatureString) + 2];
-    int numBlank = 0;
-    int j = 0;
-    for (int i = 0; i < strlen(signatureString); i++) {
-        if (*(signatureString + i) != ' ') {
-            newString[j] = *(signatureString + i);
-            ++j;
-        } else {
-            ++numBlank;
-        }
-    }
-    newString[strlen(signatureString) - numBlank] = '\0';
-    return static_cast<std::string>(newString);
+std::string Trim(std::string str) {
+    str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
+    return str;
 }
 
 SignatureInfo::SignatureInfo(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra)
         : name(name), module(module), offset(offset), extra(extra)
 {
-    this->signatureString = Trim(signatureString.c_str());
+    this->signatureString = Trim(signatureString);
     if (signatureString.find("xx") != std::string::npos) {
         this->signature = this->SigParserXX();
     } else if (signatureString.find('?') != std::string::npos) {
