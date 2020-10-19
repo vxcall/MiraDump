@@ -32,7 +32,8 @@ export_dir = "D:/Dev/Cpp/" #You can even specify export directory.
 
 [[profile]]
 name = "dwLocalPlayer"   #You can name whatever you want.
-signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"  #The signature you've got either with IDA(Sigmaker) or AAmaker
+#The signature you've gotten with either IDA(Sigmaker plugin) or Cheat Engine(AAmaker plugin)
+signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"
 module = "client.dll"   #name of the module that the address belongs to
 offset = 3  #Read up below
 extra = 0
@@ -59,7 +60,7 @@ namespace GameOffsetDumper {
     constexpr uintptr_t dwLocalPlayer = 0x6fd9d8 //client.dll
     constexpr uintptr_t InvalidModuleName = 0x0 //Invalid module name: client.dll
     constexpr uintptr_t BaseOfHandgun = 0x7b13ec //server.dll
-    const expr uintptr_t InvalidSignature = 0x0 //Invalid signature: 8Bxxxxx
+    constexpr uintptr_t InvalidSignature = 0x0 //Invalid signature: 8Bxxxxx
 }
 ```
 
