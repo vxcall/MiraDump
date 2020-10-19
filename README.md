@@ -32,7 +32,7 @@ export_dir = "D:/Dev/Cpp/" #You can even specify export directory.
 
 [[profile]]
 name = "dwLocalPlayer"   #You can name whatever you want.
-signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"  #The signature you've got
+signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"  #The signature you've got either with IDA(Sigmaker) or AAmaker
 module = "client.dll"   #name of the module that the address belongs to
 offset = 3  #Read up below
 extra = 0
@@ -52,8 +52,16 @@ Then run `GameOffsetDumper.exe` and every offset will be searched through whole 
 -> About **offset** and **extra**, read [this article](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/)
 
 ## Result would look like this
-If you specify something invalid in config.toml, the address will be 0x0 and corresponding comment will be appear.
-![result](https://user-images.githubusercontent.com/33578715/94135985-d3316280-fe96-11ea-92ac-0520c3cbebb9.png)
+
+If you specify invalid informations in config.toml, the address will be 0x0 and corresponding error comment will be appear.
+```hpp
+namespace GameOffsetDumper {
+    constexpr uintptr_t dwLocalPlayer = 0x6fd9d8 //client.dll
+    constexpr uintptr_t InvalidModuleName = 0x0 //Invalid module name: client.dll
+    constexpr uintptr_t BaseOfHandgun = 0x7b13ec //server.dll
+    const expr uintptr_t InvalidSignature = 0x0 //Invalid signature: 8Bxxxxx
+}
+```
 
 **I'm currently working on making a complete guide of this tool for those who don't understand what signature, offset and extra is. Wait for it.** Alternatively, you can find them [Here](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/) as well.
 
