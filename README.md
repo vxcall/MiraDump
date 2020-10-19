@@ -49,6 +49,8 @@ extra = 0
 
 Then run `GameOffsetDumper.exe` and every offset will be searched through whole module and written to GameOffset.hpp which will create at the same directory.
 
+-> About **offset** and **extra**, read [this article](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/)
+
 ## Result would look like this
 If you specify something invalid in config.toml, the address will be 0x0 and corresponding comment will be appear.
 ![result](https://user-images.githubusercontent.com/33578715/94135985-d3316280-fe96-11ea-92ac-0520c3cbebb9.png)
