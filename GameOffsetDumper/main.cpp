@@ -51,7 +51,7 @@ int main()
             offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid signature: " + config.signatureString));
             continue;
         }
-        std::cout << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
+        std::cout << config.name << ": " << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
         offsetInfo.emplace_back(std::make_tuple(config.name, *result, config.module));
     }
 
