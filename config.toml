@@ -1,16 +1,16 @@
-game = "left4dead2.exe"
+game = "csgo.exe"
 export_dir = "C:/Users/PC/Desktop"
 
 [[profile]]
 name = "dwLocalPlayer"
-signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"
+signature = "8D 34 85 ? ? ? ? 89 15 ? ? ? ? 8B 41 08 8B 48 04 83 F9 FF"
 module = "client.dll"
 offset = 3
-extra = 0
+extra = 4
 
 [[profile]]
-name = "BaseOfHandgun"
-signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
-module = "server.dll"
-offset = 1
+name = "dwForceForward"
+signature = "55 8B EC 51 53 8A 5D 08"
+module = "client.dll"
+offset = 245
 extra = 0
