@@ -7,6 +7,7 @@ signature = "8D 34 85 ? ? ? ? 89 15 ? ? ? ? 8B 41 08 8B 48 04 83 F9 FF"
 module = "client.dll"
 offset = 3
 extra = 4
+x64relative = false
 
 [[profile]]
 name = "dwForceForward"
@@ -14,3 +15,4 @@ signature = "55 8B EC 51 53 8A 5D 08"
 module = "client.dll"
 offset = 245
 extra = 0
+x64relative = false
