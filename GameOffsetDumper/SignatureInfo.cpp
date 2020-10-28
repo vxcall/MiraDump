@@ -5,17 +5,19 @@ std::string Trim(std::string str) {
     return str;
 }
 
-SignatureInfo::SignatureInfo(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra)
-        : name(name), module(module), offset(offset), extra(extra)
+SignatureInfo::SignatureInfo(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra, const bool& x64relative)
+        : name(name), module(module), offset(offset), extra(extra), x64relative(x64relative)
 {
     this->signatureString = Trim(signatureString);
-    if (signatureString.find("xx") != std::string::npos) {
+
+    if (signatureString.find("xx") != std::string::npos)
         this->signature = this->SigParserXX();
-    } else if (signatureString.find('?') != std::string::npos) {
+
+    else if (signatureString.find('?') != std::string::npos)
         this->signature = this->SigParserQuestion();
-    } else {                                                              //CASE neither xx nor ? is in the signature: either function would work
+
+    else                                                            //CASE neither xx nor ? is in the signature: either function would work
         this->signature = this->SigParserQuestion();
-    }
 }
 
 std::vector<int> SignatureInfo::SigParserXX() const

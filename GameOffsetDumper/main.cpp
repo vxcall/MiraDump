@@ -30,7 +30,7 @@ int main()
         return 1;
     }
     
-    std::vector<SignatureInfo> configs = ConfigReader::ReadSigs(configFileName);
+    std::vector<SignatureInfo> configs = ConfigReader::ReadProfile(configFileName);
     std::vector<std::tuple<std::string, uintptr_t, std::string>> offsetInfo {};
     for (SignatureInfo& config : configs)
     {

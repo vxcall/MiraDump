@@ -1,6 +1,8 @@
 #include "Scanner.h"
 #include <vector>
 #include <optional>
+#include <iostream>
+#include "DebugMessage.h"
 
 std::optional<uintptr_t> Scanner::FindPattern(std::vector<int>& signature, Process& process)
 {
@@ -29,7 +31,25 @@ std::optional<uintptr_t> Scanner::Scan(std::vector<int> &signature, Process &pro
     std::optional<uintptr_t> result = Scanner::FindPattern(signature, process);
     if (!result)
         return std::optional<uintptr_t> {};
-    uintptr_t buffer;
-    ReadProcessMemory(process.hProcess, static_cast<LPCVOID>(process.moduleBaseAddress + *result + sigInfo.offset), &buffer, sizeof(buffer), NULL);
-    return buffer - (uintptr_t)process.moduleBaseAddress + sigInfo.extra;
+
+    if (sigInfo.x64relative)
+    {
+        DWORD buffer1;
+        ReadProcessMemory(
+                process.hProcess,
+                static_cast<LPCVOID>(process.moduleBaseAddress + *result + 0x3),
+                &buffer1, sizeof(buffer1),
+                NULL
+                );
+        LOGHEX("rip", ((uintptr_t)process.moduleBaseAddress + *result + sigInfo.offset))
+        LOGHEX("offset", buffer1)
+        uintptr_t dynamic = ((uintptr_t)process.moduleBaseAddress + *result + 0x7) + buffer1;
+        LOGHEX("baseWeaponAddress", dynamic)
+
+        return dynamic - (uintptr_t)process.moduleBaseAddress + sigInfo.extra;
+    } else {
+        DWORD buffer;
+        ReadProcessMemory(process.hProcess, static_cast<LPCVOID>(process.moduleBaseAddress + *result + sigInfo.offset), &buffer, sizeof(buffer), NULL);
+        return buffer - (uintptr_t)process.moduleBaseAddress + sigInfo.extra;
+    }
 }
