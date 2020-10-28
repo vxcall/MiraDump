@@ -35,8 +35,9 @@ name = "dwLocalPlayer"   #You can name whatever you want.
 #The signature you've gotten with either IDA(Sigmaker plugin) or Cheat Engine(AAmaker plugin)
 signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"
 module = "client.dll"   #name of the module that the address belongs to
-offset = 3  #Read up below
+offset = 3  #Read up Guided Hacking article
 extra = 0
+x64relative = false #enable this when the opcode you've found is [rip+offset]
 
 [[profile]]
 name = "BaseOfHandgun"
@@ -44,6 +45,7 @@ signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
 module = "server.dll"
 offset = 1
 extra = 0
+x64relative = false
 
 #so on and so forth
 ```
