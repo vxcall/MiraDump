@@ -3,12 +3,12 @@
 #include <optional>
 #include <filesystem>
 
-std::vector<SignatureInfo> ConfigReader::ReadProfile(const std::string& filename)
+std::vector<SigProfile> ConfigReader::ReadProfile(const std::string& filename)
 {
     auto config = toml::parse(filename);
-    std::vector<SignatureInfo> result = {};
+    std::vector<SigProfile> result = {};
     for (auto& profile : config.at("profile").as_array()) {
-        SignatureInfo si(
+        SigProfile si(
                 profile.at("name").as_string(),
                 profile.at("signature").as_string(),
                 profile.at("module").as_string(),

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-class SignatureInfo {
+class SigProfile {
 private:
     [[nodiscard]] std::vector<int> SigParserXX() const;
     [[nodiscard]] std::vector<int> SigParserQuestion() const;
@@ -14,5 +14,5 @@ public:
     std::string module;
     const int offset;
     const int extra;
-    SignatureInfo(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra, const bool& x64relative);
+    SigProfile(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra, const bool& x64relative);
 };

@@ -31,10 +31,10 @@ int main()
         return 1;
     }
     
-    std::vector<SignatureInfo> configs = ConfigReader::ReadProfile(configFileName);
+    std::vector<SigProfile> configs = ConfigReader::ReadProfile(configFileName);
     std::vector<std::tuple<std::string, uintptr_t, std::string>> resultInfo {};
     std::unordered_map<std::string, std::vector<std::byte>> modules;
-    for (SignatureInfo& config : configs)
+    for (SigProfile& config : configs)
     {
         Process prc = Process::GetProcess(*gameName, config.module);
         if (auto e = prc.GetError(); e && e->find("module") == std::string::npos) {

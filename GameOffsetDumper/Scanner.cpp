@@ -24,7 +24,7 @@ std::optional<uintptr_t> Scanner::FindPattern(std::vector<int>& signature, Proce
     return std::optional<uintptr_t>{};
 }
 
-std::optional<uintptr_t> Scanner::Scan(Process &process, SignatureInfo& sigInfo, std::vector<std::byte> moduleByte) {
+std::optional<uintptr_t> Scanner::Scan(Process &process, SigProfile& sigInfo, std::vector<std::byte> moduleByte) {
     std::optional<uintptr_t> result = Scanner::FindPattern(sigInfo.signature, process, moduleByte);
     if (!result)
         return std::optional<uintptr_t> {};

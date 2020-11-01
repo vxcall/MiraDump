@@ -1,11 +1,11 @@
-#include "SignatureInfo.h"
+#include "SigProfile.h"
 
 std::string Trim(std::string str) {
     str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
     return str;
 }
 
-SignatureInfo::SignatureInfo(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra, const bool& x64relative)
+SigProfile::SigProfile(std::string& name, const std::string& signatureString, std::string& module, const int& offset, const int& extra, const bool& x64relative)
         : name(name), module(module), offset(offset), extra(extra), x64relative(x64relative)
 {
     this->signatureString = Trim(signatureString);
@@ -20,7 +20,7 @@ SignatureInfo::SignatureInfo(std::string& name, const std::string& signatureStri
         this->signature = this->SigParserQuestion();
 }
 
-std::vector<int> SignatureInfo::SigParserXX() const
+std::vector<int> SigProfile::SigParserXX() const
 {
     int i = 0;
     int sigSize = this->signatureString.size();
@@ -40,7 +40,7 @@ std::vector<int> SignatureInfo::SigParserXX() const
     return result;
 }
 
-std::vector<int> SignatureInfo::SigParserQuestion() const
+std::vector<int> SigProfile::SigParserQuestion() const
 {
     int i = 0;
     int sigSize = this->signatureString.size();
