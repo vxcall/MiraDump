@@ -72,7 +72,7 @@ int main()
         std::cout << "(You probably didn't specify existing directory.)" << std::endl;
     }
 
-    std::string exptDir = dir + "GameOffsets.hpp";
+    std::string exptDir = dir + "Offsets.hpp";
     Exporter exp(exptDir, resultInfo);
     exp.WriteDown();
     std::cout << "\nGameOffsetDumper.exe has successfully finished its work:)" << std::endl;
