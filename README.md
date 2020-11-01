@@ -50,7 +50,7 @@ x64relative = false
 #so on and so forth
 ```
 
-Then run `GameOffsetDumper.exe` and every offset will be searched through whole module and written to GameOffset.hpp which will create at the same directory.
+Then run `GameOffsetDumper.exe` and every offset will be searched through whole module and written to Offset.hpp which will create at the same directory.
 
 -> About **offset** and **extra**, read [this article](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/)
 
