@@ -6,8 +6,8 @@
 
 class Exporter {
     std::string filename;
-    std::vector<std::tuple<std::string, uintptr_t, std::string>> offsetInfo;
+    std::vector<std::tuple<std::string, uintptr_t, std::string>> resultInfo;
 public:
-    Exporter(std::string& filename, std::vector<std::tuple<std::string, uintptr_t, std::string>>& offsetInfo);
+    Exporter(std::string& filename, std::vector<std::tuple<std::string, uintptr_t, std::string>>& resultInfo);
     void WriteDown();
 };

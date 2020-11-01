@@ -7,12 +7,12 @@
 class Process {
     std::string processName;
     DWORD processID;
-    std::string moduleName;
     Process(std::string& processName, const std::string& moduleName);
     void GetProcID();
     void GetModuleInfo(const std::string& moduleName);
     void GetProcessHandle(DWORD& processID);
 public:
+    std::string moduleName;
     HANDLE hProcess;
     BYTE* moduleBaseAddress;
     DWORD moduleBaseSize;

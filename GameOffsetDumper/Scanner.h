@@ -4,7 +4,7 @@
 #include "SignatureInfo.h"
 
 class Scanner {
-    static std::optional<uintptr_t> FindPattern(std::vector<int>& signature, Process& process);
+    static std::optional<uintptr_t> FindPattern(std::vector<int>& signature, Process& process, std::vector<std::byte> moduleByte);
 public:
-    static std::optional<uintptr_t> Scan(std::vector<int>& signature, Process& process, SignatureInfo& sigInfo);
+    static std::optional<uintptr_t> Scan(Process& process, SignatureInfo& sigInfo, std::vector<std::byte> moduleByte);
 };

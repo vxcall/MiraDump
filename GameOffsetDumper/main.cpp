@@ -6,6 +6,7 @@
 #include "Process.h"
 #include "Scanner.h"
 #include "Exporter.h"
+#include <unordered_map>
 
 void Terminate() {
     std::cout << "\n\nPress any key to finish..." << std::endl;
@@ -31,7 +32,8 @@ int main()
     }
     
     std::vector<SignatureInfo> configs = ConfigReader::ReadProfile(configFileName);
-    std::vector<std::tuple<std::string, uintptr_t, std::string>> offsetInfo {};
+    std::vector<std::tuple<std::string, uintptr_t, std::string>> resultInfo {};
+    std::unordered_map<std::string, std::vector<std::byte>> modules;
     for (SignatureInfo& config : configs)
     {
         Process prc = Process::GetProcess(*gameName, config.module);
@@ -41,18 +43,25 @@ int main()
             return 1;
         } else if (e->find("module") != std::string::npos) {
             std::cout << *e;
-            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid module name: " + config.module));
+            resultInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid module name: " + config.module));
             continue;
         }
 
-        auto result = Scanner::Scan(config.signature, prc, config);
+        if (modules.count(prc.moduleName) == 0) {
+            std::vector<std::byte> buffer(prc.moduleBaseSize);
+            ReadProcessMemory(prc.hProcess, static_cast<LPCVOID>(prc.moduleBaseAddress), buffer.data(), buffer.size(), NULL);
+            modules.emplace(prc.moduleName, buffer);
+        }
+
+        std::optional<uintptr_t> result = Scanner::Scan(prc, config, modules.at(prc.moduleName));
+
         if (!result) {
             std::cerr << "Couldn't find signature: " << config.name << std::endl;
-            offsetInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid signature: " + config.signatureString));
+            resultInfo.emplace_back(std::make_tuple(config.name, 0, "Invalid signature: " + config.signatureString));
             continue;
         }
         std::cout << config.name << ": " << "<" << config.module << ">" << " + 0x" << std::hex << *result << std::endl;
-        offsetInfo.emplace_back(std::make_tuple(config.name, *result, config.module));
+        resultInfo.emplace_back(std::make_tuple(config.name, *result, config.module));
     }
 
     std::string dir = ConfigReader::ReadExportDir(configFileName);
@@ -64,7 +73,7 @@ int main()
     }
 
     std::string exptDir = dir + "GameOffsets.hpp";
-    Exporter exp(exptDir, offsetInfo);
+    Exporter exp(exptDir, resultInfo);
     exp.WriteDown();
     std::cout << "\nGameOffsetDumper.exe has successfully finished its work:)" << std::endl;
     Terminate();
