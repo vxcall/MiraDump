@@ -7,7 +7,7 @@ Exporter::Exporter(std::string& filename, std::vector<std::tuple<std::string, ui
 
 void Exporter::WriteDown() {
     std::ofstream file(filename);
-    file << "namespace GameOffsetDumper {" << std::endl;
+    file << "namespace MiraDump {" << std::endl;
     for (auto& result : resultInfo) {
         file << "    constexpr uintptr_t " << std::get<0>(result) << " = " << "0x" << std::hex << std::get<1>(result) << " //" << std::get<2>(result) << std::endl;
     }
