@@ -19,6 +19,7 @@ $ git clone https://github.com/s3pt3mb3r/GameOffsetDumper.git
 $ cd GameOffsetDumper
 $ mkdir build && cd build
 $ cmake ..
+$ cmake --build .
 ```
 
 Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
