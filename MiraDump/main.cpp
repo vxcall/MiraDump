@@ -66,7 +66,7 @@ int main()
 
     std::string dir = ConfigReader::ReadExportDir(configFileName);
     if (!dir.empty()) {
-        std::cout << "\nGameOffsetDumper.hpp will be created at: " << dir << std::endl;
+        std::cout << "\nOffsets.hpp will be created at: " << dir << std::endl;
     } else {
         std::cout << "GameOffsets.hpp will be created at current directory." << std::endl;
         std::cout << "(You probably didn't specify existing directory.)" << std::endl;
@@ -75,7 +75,7 @@ int main()
     std::string exptDir = dir + "Offsets.hpp";
     Exporter exp(exptDir, resultInfo);
     exp.WriteDown();
-    std::cout << "\nGameOffsetDumper.exe has successfully finished its work:)" << std::endl;
+    std::cout << "\nMiraDump has successfully finished its work:)" << std::endl;
     Terminate();
     return 0;
 }
