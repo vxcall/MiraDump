@@ -1,4 +1,4 @@
-# :mag: GameOffsetDumper
+# :mag: MiraDump
 
 ![header](https://user-images.githubusercontent.com/33578715/93803078-e8c84180-fc76-11ea-8fd4-dce048825479.PNG)
 
@@ -15,7 +15,7 @@ Basically this would help game hackers yet sadly if you guys don't know how to r
 Run following commands so that `GameOffsetDumper.sln` file for Visual Studio will be generated in `build` directory;)
 
 ```
-$ git clone https://github.com/s3pt3mb3r/GameOffsetDumper.git
+$ git clone https://github.com/s3pt3mb3r/MiraDump.git
 $ cd GameOffsetDumper
 $ mkdir build && cd build
 $ cmake ..
@@ -25,7 +25,7 @@ $ cmake --build .
 Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
 
 This is the format of config.toml.
-(We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/GameOffsetDumper/blob/master/config.toml) :ok_hand:.)
+(We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/MiraDump/blob/master/config.toml) :ok_hand:.)
 
 ```toml
 game = "left4dead2.exe"  #specify the name of the target game
@@ -51,7 +51,7 @@ x64relative = false
 #so on and so forth
 ```
 
-Then run `GameOffsetDumper.exe` and every offset will be searched through whole module and written to Offset.hpp which will create at the same directory.
+Then run `MiraDump.exe` and every offset will be searched through whole module and written to Offset.hpp which will create at the same directory.
 
 -> About **offset** and **extra**, read [this article](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/)
 
