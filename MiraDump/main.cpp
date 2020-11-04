@@ -9,24 +9,14 @@
 #include <unordered_map>
 
 void Terminate() {
-    std::cout << "\n\nPress any key to finish..." << std::endl;
-    std::cin.get();
-    fclose(stdout);
-    fclose(stderr);
-    fclose(stdin);
-    FreeConsole();
 }
+
 int main()
 {
-    AllocConsole();
-    FILE* fp = NULL;
-    freopen_s(&fp, "CONOUT$", "w", stdout);
-    freopen_s(&fp, "CONOUT$", "w", stderr);
-    freopen_s(&fp, "CONIN$", "r", stdin);
     std::string configFileName = "config.toml";
     std::optional<std::string> gameName = ConfigReader::ReadGameName(configFileName);
     if (!gameName) {
-        std::cerr << "Something went wrong. Make sure if you have config.toml and specified the name of a game" << std::endl;
+        std::cout << "Something went wrong. Make sure if you have config.toml and specified the name of a game." << std::endl;
         Terminate();
         return 1;
     }
@@ -38,7 +28,7 @@ int main()
     {
         Process prc = Process::GetProcess(*gameName, config.module);
         if (auto e = prc.GetError(); e && e->find("module") == std::string::npos) {
-            std::cerr << *e;
+            std::cout << *e;
             Terminate();
             return 1;
         } else if (e->find("module") != std::string::npos) {
