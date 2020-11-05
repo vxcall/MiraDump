@@ -10,9 +10,10 @@ Leave a **:star:star** if you find this helpful :)
 
 # :fire: Get started
 
-1. First of all, you **must** install following dependencies beforehand to build app properly.
+1. First of all, you **must** install following dependencies beforehand to build app properly. Everything listed here is crucial when it comes to developing tools, you would need these later with someone else's product so just fricking install them. You'll be totally fine.
 
-- npm and node  -> [**Install from here**](https://www.npmjs.com/get-npm)
+- npm and node  -> [**Download from here**](https://www.npmjs.com/get-npm)
+- cmake -> [**Download from here**](https://cmake.org/download/) (Download Windows win64-x64 Installer)
 
 2. Once you install them, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
 
