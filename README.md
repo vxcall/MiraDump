@@ -15,11 +15,16 @@ Leave a **:star:star** if you find this helpful :)
 - npm and node  -> [**Download from here**](https://www.npmjs.com/get-npm)
 - cmake -> [**Download from here**](https://cmake.org/download/) (Download Windows win64-x64 Installer)
 
-2. Once you install them, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
+2. Git clone this repository by running this command in any directory you'd like to install.
+```
+$ git clone https://github.com/s3pt3mb3r/MiraDump.git
+```
 
-3. If cmd file done its job without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
+3. Once you install them, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
 
-4. Run `MiraDumpClient.exe` and GUI app will be launched. Refer to `How to use this app` for usage of this app.
+4. If cmd file done its job without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
+
+5. Run `MiraDumpClient.exe` and GUI app will be launched. Refer to `How to use this app` for usage of this app.
 
 # :sparkles: How to use this app
 
