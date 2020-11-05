@@ -2,7 +2,7 @@
 
 Leave a **:star:star** if you find this helpful :)
 
-**MiraDump** is a app that finds offsets of various games by pattern scanning the entire module according to the signature you specify. The biggest feature of this is this clean looks GUI which lets you work easily and Intuitively.
+**MiraDump** is an app that finds offsets of various games by pattern scanning the entire module according to the signature you specify. The biggest feature of this is this clean looks GUI which lets you work easily and Intuitively.
 
 ![app-image](https://user-images.githubusercontent.com/33578715/98183053-42907c80-1f42-11eb-893b-3f2a5dc7fc7b.png)
 
