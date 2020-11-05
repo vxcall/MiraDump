@@ -10,16 +10,15 @@ Leave a **:star:star** if you find this helpful :)
 
 # :fire: Get started
 
-First of all, you **must** install following dependencies beforehand to build app properly.
+1. First of all, you **must** install following dependencies beforehand to build app properly.
 
-### Dependencies
-- npm and node  -> [Install from here](https://www.npmjs.com/get-npm)
+- npm and node  -> [**Install from here**](https://www.npmjs.com/get-npm)
 
-After that, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
+2. Once you install them, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
 
-If `MiraDump-build.cmd` done its job without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
+3. If cmd file done its job without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
 
-Run `MiraDumpClient.exe` and you're good to go. Refer to `How to use this app` for more information.
+4. Run `MiraDumpClient.exe` and GUI app will be launched. Refer to `How to use this app` for usage of this app.
 
 # :sparkles: How to use this app
 
