@@ -1,59 +1,45 @@
 # :mag: MiraDump
 
-![header](https://user-images.githubusercontent.com/33578715/93803078-e8c84180-fc76-11ea-8fd4-dce048825479.PNG)
-
 Leave a **:star:star** if you find this helpful :)
 
-**GameOffsetDumper** is a tool that finds offsets of various games by pattern scanning the entire module according to the signature you specify. This is a substitute for hazedumper not gonna lie, but this tool adopted toml file instead of json for config file. And since you can specify the export directory, you can directory update your offset header which I think is really useful.
+**MiraDump** is a app that finds offsets of various games by pattern scanning the entire module according to the signature you specify. The biggest feature of this is this clean looks GUI which lets you work easily and Intuitively.
 
-Basically this would help game hackers yet sadly if you guys don't know how to reverse games and stuff, this is gonna be a trash for you. However, I'll be always ok to answer whatever you would ask, so create issue if you're wondering something.
+![app-image](https://user-images.githubusercontent.com/33578715/98183053-42907c80-1f42-11eb-893b-3f2a5dc7fc7b.png)
 
 :warning:Do not use this to the game running with a modern anti-cheat. Or launch option `-insecure` will help you when you try this tool on the game under VAC protection.
 
 # :fire: Get started
 
-Run following commands so that `GameOffsetDumper.sln` file for Visual Studio will be generated in `build` directory;)
+First of all, you **must** install following dependencies beforehand to build app properly.
 
-```
-$ git clone https://github.com/s3pt3mb3r/MiraDump.git
-$ cd GameOffsetDumper
-$ mkdir build && cd build
-$ cmake ..
-$ cmake --build .
-```
+### Dependencies
+- npm and node  -> [Install from here](https://www.npmjs.com/get-npm)
 
-Firstly, prepare config.toml file in the same directory as GameOffsetDumper.exe and fill it up properly.
+After that, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
 
-This is the format of config.toml.
-(We also have [**a sample of config.toml**](https://github.com/s3pt3mb3r/MiraDump/blob/master/config.toml) :ok_hand:.)
+If `MiraDump-build.cmd` done its job without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
 
-```toml
-game = "left4dead2.exe"  #specify the name of the target game
-export_dir = "D:/Dev/Cpp/" #You can even specify export directory.
+Run `MiraDumpClient.exe` and you're good to go. Refer to `How to use this app` for more information.
 
-[[profile]]
-name = "dwLocalPlayer"   #You can name whatever you want.
-#The signature you've gotten with either IDA(Sigmaker plugin) or Cheat Engine(AAmaker plugin)
-signature = "8Bxxxxxxxxxxxx85xx74xx8Bxx8Bxxxxxxxxxx8BxxFFxx85xx74xx8Bxx"
-module = "client.dll"   #name of the module that the address belongs to
-offset = 3  #Read up Guided Hacking article
-extra = 0
-x64relative = false #enable this when the opcode you've found is [rip+offset]
+# :sparkles: How to use this app
 
-[[profile]]
-name = "BaseOfHandgun"
-signature = "0Dxxxxxxxxxxxx0FB7xx03xx03xx03xx8Bxxxx"
-module = "server.dll"
-offset = 1
-extra = 0
-x64relative = false
+1. Specify the name of the target name in the first textarea and specify the directory you want result hpp file to be created.
 
-#so on and so forth
-```
+![fundamental-info-image](https://user-images.githubusercontent.com/33578715/98184566-a9fbfb80-1f45-11eb-82fa-b133eab46ed0.png)
 
-Then run `MiraDump.exe` and every offset will be searched through whole module and written to Offset.hpp which will create at the same directory.
+2. This is what they call profile. Specify following things here.
+- **signature name** (anything)
+- **actual signature**
+- **module name** (including extention)
+- **offset** (if you dont know what's offset and extra, read [this article](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/))
+- **extra**
+- **x64relative** (This option is particularly for RIP-relative-addressing. If the target process is x86, just keep this untick)
 
--> About **offset** and **extra**, read [this article](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/)
+![profiles-image](https://user-images.githubusercontent.com/33578715/98184731-0ced9280-1f46-11eb-9f5b-dd6721369a89.png)
+
+3. Once you fill up the forms, click `Run MiraDump` button and you will see the result/error in the vast light blue field right below it:)
+
+![run-btn-image](https://user-images.githubusercontent.com/33578715/98185201-1e836a00-1f47-11eb-9263-418babd401ef.png)
 
 ## Result would look like this
 
@@ -66,8 +52,6 @@ namespace GameOffsetDumper {
     constexpr uintptr_t InvalidSignature = 0x0 //Invalid signature: 8Bxxxxx
 }
 ```
-
-**I'm currently working on making a complete guide of this tool for those who don't understand what signature, offset and extra is. Wait for it.** Alternatively, you can find them [Here](https://guidedhacking.com/resources/download-hazedumper-csgo-offset-dumper.24/) as well.
 
 # :notes: Background
 
