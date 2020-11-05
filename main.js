@@ -9,9 +9,8 @@ app.on('window-`all-closed', function() {
 });
 
 app.on('ready', function() {
-  mainWindow = new BrowserWindow({width: 1100, height: 700});
+  mainWindow = new BrowserWindow({width: 1100, height: 700, webPreferences:{nodeIntegration: true}});
   mainWindow.loadURL('file://' + __dirname + '/assets/app.html');
-  mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function() {
     mainWindow = null;
