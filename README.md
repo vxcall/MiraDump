@@ -48,7 +48,7 @@ $ git clone https://github.com/s3pt3mb3r/MiraDump.git
 
 ## Result would look like this
 
-If you specify invalid informations in config.toml, the address will be 0x0 and corresponding error comment will be appear.
+If you specify invalid informations in config.toml, the address will be 0x0 and corresponding error comment will appear.
 ```hpp
 namespace GameOffsetDumper {
     constexpr uintptr_t dwLocalPlayer = 0x6fd9d8 //client.dll
