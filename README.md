@@ -42,7 +42,8 @@ $ git clone https://github.com/s3pt3mb3r/MiraDump.git
 
 ![profiles-image](https://user-images.githubusercontent.com/33578715/98184731-0ced9280-1f46-11eb-9f5b-dd6721369a89.png)
 
-3. Once you fill up the forms, click `Run MiraDump` button and you will see the result/error in the vast light blue field right below it:)
+3. Once you fill up the forms, click `Run MiraDump` button and you will see the log/error in the light blue field below it while MiraDump is doing its thing. Finally, `Offsets.hpp` will be created in the export directory. 
+
 
 ![run-btn-image](https://user-images.githubusercontent.com/33578715/98185201-1e836a00-1f47-11eb-9263-418babd401ef.png)
 
