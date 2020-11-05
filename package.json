@@ -1,0 +1,38 @@
+{
+  "name": "MiraDumpClient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@iarna/toml": "^2.2.5"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.9.1"
+  },
+  "build": {
+    "appId": "MiraDumpClient",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "assets",
+      "main.js",
+      "package.json",
+      "package-lock.json"
+    ],
+    "win": {
+      "icon": "assets/win/icon_win.ico",
+      "target": "nsis"
+    },
+    "nsis":{
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
