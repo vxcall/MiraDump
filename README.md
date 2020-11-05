@@ -12,17 +12,32 @@ Leave a **:star:star** if you find this helpful :)
 
 1. First of all, you **must** install following dependencies beforehand to build app properly. Everything listed here is crucial when it comes to developing tools, you would need these later with someone else's product so just fricking install them. You'll be totally fine.
 
+- Visual Studio 2019
+- cmake -> [**Download from here**](https://cmake.org/download/) (Use Visual Studio Developer console if you dont wanna install cmake.)
 - npm and node  -> [**Download from here**](https://www.npmjs.com/get-npm)
-- cmake -> [**Download from here**](https://cmake.org/download/) (Download Windows win64-x64 Installer)
 
 2. Git clone this repository by running this command in any directory you'd like to install.
-```
+```Shell
 $ git clone https://github.com/s3pt3mb3r/MiraDump.git
 ```
 
-3. Once you install them, double click `MiraDump-build.cmd` in the project folder. This file will just run bunch of commands automatically for you to save your time. It's just text file after all, so you can take a look at what kinda commands would be executed.
+3. Once you install them, run following commands. Also, I prepare `MiraDump-build.cmd` which is the bat file runs the commands automatically for you instead, so double click it could also lets you proceed.
 
-4. If cmd file done its job without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
+```Shell
+$ npm install
+$ npm i electron -D
+$ npm i electron-builder -D
+$ "node_modules/.bin/electron-builder" --win --x64
+$ copy /y "config.toml" "dist\win-unpacked\config.toml"
+$ mkdir build
+$ cd build
+$ cmake ..
+$ cmake --build .
+$ cd ..
+$ copy /y "build\Debug\MiraDump.exe" "dist\win-unpacked\MiraDump.exe"
+```
+
+4. If you've done this without any errors, you will see `MiraDumpClient.exe`, `MiraDump.exe` as well as `config.toml` in the `dist/win-unpacked` folder in the project root.
 
 5. Run `MiraDumpClient.exe` and GUI app will be launched. Refer to `How to use this app` for usage of this app.
 
