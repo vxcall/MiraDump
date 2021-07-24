@@ -30,7 +30,7 @@
       "icon": "assets/win/icon_win.ico",
       "target": "nsis"
     },
-    "nsis":{
+    "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }
