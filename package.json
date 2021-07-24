@@ -13,7 +13,8 @@
     "@iarna/toml": "^2.2.5"
   },
   "devDependencies": {
-    "electron-builder": "^22.9.1"
+    "electron": "^13.1.7",
+    "electron-builder": "^22.11.7"
   },
   "build": {
     "appId": "MiraDumpClient",
@@ -30,7 +31,7 @@
       "icon": "assets/win/icon_win.ico",
       "target": "nsis"
     },
-    "nsis":{
+    "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     }
