@@ -11,11 +11,11 @@ Leave a **:star:star** if you find this helpful :)
 
 # :fire: Get started
 
-1. First of all, you **must** install following dependencies beforehand to build app properly. Everything listed here is crucial when it comes to developing tools, you would need these later with someone else's product so just fricking install them. You'll be totally fine.
+1. First of all, you **must** install following dependencies beforehand to build app properly. Everything listed here is crucial when it comes to developing tools, you would need these later with someone else's product so just install them. You'll be totally fine.
 
 - Visual Studio 2019
 - cmake -> [**Download from here**](https://cmake.org/download/) (Use Visual Studio Developer console if you dont wanna install cmake.)
-- npm and node  -> [**Download from here**](https://www.npmjs.com/get-npm)
+- up tp date Node.js  -> [**Download from here**](https://www.npmjs.com/get-npm)
 
 2. Git clone this repository by running this command in any directory you'd like to install.
 ```Shell
@@ -26,9 +26,7 @@ $ git clone https://github.com/s3pt3mb3r/MiraDump.git
 
 ```Shell
 $ npm install
-$ npm i electron -D
-$ npm i electron-builder -D
-$ "node_modules/.bin/electron-builder" --win --x64
+$ npx electron-builder --win --x64
 $ copy /y "config.toml" "dist\win-unpacked\config.toml"
 $ mkdir build
 $ cd build
