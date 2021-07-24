@@ -1,6 +1,4 @@
 call npm install
-call npm i electron -D
-call npm i electron-builder -D
 call npx electron-builder --win --x64
 copy /y "config.toml" "dist\win-unpacked\config.toml"
 mkdir build
