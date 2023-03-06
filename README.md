@@ -2,7 +2,6 @@
 When i first create this, I thought it would be cool. Although it supports rip relative addressing, u can only find simple stuff with this. just programing training and cuz i was a absolute beginner (well, im still a beginner tho...).
 
 # :mag: MiraDump
-![header-image](https://user-images.githubusercontent.com/33578715/98281007-2985db00-1fd7-11eb-90d8-cb23a9964339.PNG)
 
 **MiraDump** is an app that finds offsets of various games by pattern scanning the entire module according to the signature you specify. The biggest feature of this is this clean looks GUI which lets you work easily and Intuitively.
 
